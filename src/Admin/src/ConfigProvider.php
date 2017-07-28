@@ -5,6 +5,8 @@ namespace Admin;
 use Admin\Action\{
     CreatePageAction, CreatePageFactory, DeletePageAction, DeletePageFactory, EditPageAction, EditPageFactory, ListRecordsPageAction, ListRecordsPageFactory
 };
+use Admin\Middleware\RbacMiddleware;
+use Admin\Middleware\RbacMiddlewareFactory;
 use Zend\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 
 /**
@@ -45,6 +47,7 @@ class ConfigProvider
                 EditPageAction::class => EditPageFactory::class,
                 DeletePageAction::class => DeletePageFactory::class,
                 ListRecordsPageAction::class => ListRecordsPageFactory::class,
+                RbacMiddleware::class => RbacMiddlewareFactory::class,
             ],
         ];
     }
