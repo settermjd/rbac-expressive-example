@@ -2,6 +2,8 @@
 
 namespace Admin\Middleware;
 
+use Admin\Entity\Article;
+use Admin\Entity\User;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
@@ -19,23 +21,6 @@ class RbacMiddlewareFactory
     {
         $template = $container->get(TemplateRendererInterface::class);
 
-        $user = new class {
-            public function getRole() {
-                return 'content.editor';
-            }
-            public function getId()
-            {
-                return 25;
-            }
-        };
-
-        $article = new class {
-            public function getUserId()
-            {
-                return 25;
-            }
-        };
-
-        return new RbacMiddleware($template, $user, $article);
+        return new RbacMiddleware($template, new User(), new Article());
     }
 }
